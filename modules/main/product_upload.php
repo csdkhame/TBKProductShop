@@ -155,6 +155,7 @@ var aaaa = $('#images').get(0).files[this.id].name;
     });
     $("#file-1").fileinput({
    		uploadUrl: '#',
+   		showUpload: false,
         allowedFileExtensions: ['jpg', 'png', 'gif'],
         overwriteInitial: false,
         maxFileSize: 1000,
