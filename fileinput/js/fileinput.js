@@ -523,12 +523,12 @@
             tSize = ' <samp>({sizeText})</samp>';
             tFooter = '<div class="file-thumbnail-footer">\n' +
                 '    <div class="file-footer-caption" title="{caption}">{caption}<br>{size}</div>\n' +
-                '    {progress} {indicator} {actions}\n' +
+                '    {progress}  {actions}\n' +
                 '</div>';
             tActions = '{drag}\n' +
                 '<div class="file-actions">\n' +
                 '    <div class="file-footer-buttons">\n' +
-                '        {upload} {delete} {zoom} {other}' +
+                '         {delete} {zoom} {other}' +
                 '    </div>\n' +
                 '    <div class="clearfix"></div>\n' +
                 '</div>';
