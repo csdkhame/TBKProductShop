@@ -39,14 +39,24 @@ define("CAPCHA_HEIGHT","20"); //HEIGHT
 
 define("DB_HOST","localhost");
 
-define("DB_NAME","admin_dddtrip");
+define("DB_NAME","admin_productsell");
 
-define("DB_USERNAME","admin_dddtrip");
+define("DB_USERNAME","root");
 
-define("DB_PASSWORD","252631@dotdotdottrip");
+define("DB_PASSWORD","123");
 
-define("Country","ap_country"); 
+define("COST","cost_spare"); 
 
-define("Order","ap_order"); 
-define("User","ap_users"); 
+define("Employee","employee"); 
+
+define("TB_Detail","web_detail"); 
+
+define("TB_Imag","web_imagine"); 
+
+define("TB_Item","web_item_list"); 
+
+define("TB_lang","web_language2"); 
+
+
+
 ?>

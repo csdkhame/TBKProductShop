@@ -266,5 +266,9 @@ class DB{
 		//if(second<0){$word = "<span style=\"color: #FF3333;\">"."Day: ".abs($day)." Hour: ".abs($hour)." Minute: ".abs($minute)."</span>"; }
 		return $word;
 	}
+	
+
+
+
 }
 ?>
