@@ -56,85 +56,236 @@ used to vertically center elements, may need modification if you're not using de
 </style>
 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css' />
-
+<div class="jumbotron jumbotron-sm">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-lg-12">
+                <h2 class="h2">
+                    T-Booking<small> Increase Product Shop</small></h2>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="container">
     <div class="row">
         
         <div class="col-md-10 col-md-offset-1">
 
-            <div class="panel panel-default panel-table">
-              <div class="panel-heading">
-                <div class="row">
-                  <div class="col col-xs-6">
-                    <h3 class="panel-title">Panel Heading</h3>
-                  </div>
-                  <div class="col col-xs-6 text-right">
-                    <button type="button" class="btn btn-sm btn-primary btn-create">Create New</button>
-                  </div>
-                </div>
-              </div>
-              <div class="panel-body">
-                
-                <table class="table table-striped table-bordered table-list">
-                  <thead>
-                    <tr>
-                        <th><em class="fa fa-cog"></em></th>
-                        <th class="hidden-xs">ID</th>
-                        <th>??????</th>
-                        <th>??????</th>
-                        <th>???????</th>
-                        <th>?????</th>
-                        <th>?????????</th>
-                        <th>??????</th>
-                        <th>??????</th>
-                    </tr> 
-                  </thead>
-                  <tbody>
-                  <?php 
-                  $db->connectdb(DB_NAME,DB_USERNAME,DB_PASSWORD);
-				  $res[product] = $db->select_query("SELECT id,product_id,program,car_model,net_total,num_bill,date,num,price_unit FROM ".COST." order by id asc ");
-			
-  
-    while($arr[product] = $db->fetch($res[product])){  ?>
+          <style>
+	
+/* Table css Start */
+a.del
+{
+    background:#d9534f;
+    border-radius: 2px; 
+    width: 35px;
+    height:28px; 
+    padding-left:12px;
+    line-height:10px;
+}
 
-                          <tr>
-                            <td align="center">
-                              <a class="btn btn-default"><em class="fa fa-pencil"></em></a>
-                              <a class="btn btn-danger"><em class="fa fa-trash"></em></a>
-                            </td>
-                            <td class="hidden-xs"><?=$arr[product][id];?></td>
-                            <td><?=$arr[product][program];?></td>
-                            <td><?=$arr[product][car_model];?></td> 
-                            <td><?=$arr[product][price_unit];?></td>
-                            <td><?=$arr[product][num];?></td>
-                            <td><?=$arr[product][net_total];?></td>
-                            <td><?=$arr[product][num_bill];?></td>
-                            <td><?=$arr[product][date];?></td>
-                          </tr>
-                          <?php  } ?>
-                        </tbody>
-                </table>
-            
-              </div>
-              <div class="panel-footer">
-                <div class="row">
-                  <div class="col col-xs-4">Page 1 of 5
-                  </div>
-                  <div class="col col-xs-8">
-                    <ul class="pagination hidden-xs pull-right">
-                      <li><a href="#">1</a></li>
-                      <li><a href="#">2</a></li>
-                      <li><a href="#">3</a></li>
-                      <li><a href="#">4</a></li>
-                      <li><a href="#">5</a></li>
-                    </ul>
-                    <ul class="pagination visible-xs pull-right">
-                        <li><a href="#">«</a></li>
-                        <li><a href="#">»</a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
+a.edit
+{
+    padding-left:10px;
+    background:#337ab7;
+    color:#fff;
+    border-radius:2px;
+    border:none;
+}
+
+tr.row-name
+{
+    font-size: 18px;
+    color:#448aff;
+}
+
+tr.row-content
+{
+    color:#6c7173;
+}
+
+table
+{
+    border-bottom: 8px solid #448aff;
+}
+
+td.check
+{
+    text-align: center;
+}
+
+.table-striped>tbody>tr:nth-of-type(odd)
+{
+    background:#F0F2F2 !important; 
+}
+
+a.btn-danger:hover
+{
+    background: #de6c69;
+}
+
+a.btn-danger
+{
+    background:#d9534f;  
+}
+
+a.btn-top
+{
+    background:#448aff;
+    color:#fff;
+    border:1px solid #448aff; 
+    padding: 7px 10px; 
+    border-radius:4px; 
+}
+
+a.btn-top:hover
+{
+    text-decoration: none;
+    box-shadow:3px 3px 5px #222; 
+    transition:box-shadow 0.5s; 
+}
+
+/* Table css End */
+
+</style>
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />    
+        
+
+  <table class="table table-striped ">
+    <div class="dropdown">
+      <button class="btn btn-default dropdown-toggle pull-right" type="button" data-toggle="dropdown"> <span class="glyphicon glyphicon-check"></span> &nbspMark/ UnMark All
+      <span class="caret"></span></button>
+      <ul class="dropdown-menu dropdown-menu-right" style="margin-top: 17px">
+        <li><a href="#">Mark All</a></li>
+        <li><a href="#">Unmark All</a></li>
+      </ul>
+      <a class="btn-top" style="margin-right: 15px;" href="#" class="btn btn-primary btn-success pull-right"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit All</a>
+      <a class="btn-top" style="margin-right: 15px;" href="#" class="btn btn-primary btn-success pull-right"> <span class="glyphicon glyphicon-plus"></span> &nbsp Create Table</a>
+  </div>
+
+     <thead>
+        <tr class="row-name">
+           <th style="width:12%">Check/UnCheck</th>
+           <th style="width:10%">New/Old</th>
+           <th>Id</th>
+           <th>Name</th>
+           <th>Products</th>
+           <th>Review</th>
+           <th>Price(In Rs)</th>
+           <th>Settings</th>
+        </tr>
+     </thead>   
+     <tbody>
+        <tr class="row-content">
+           <td class="check" "> <label><input type="checkbox" value=""></label></td>
+           <td> <span class="label label-default"> New </span></td>
+           <td>FA101</td>
+           <td>Akshay</td>
+           <td>Alumin foil</td>
+           <td>Super... <i class="fa fa-thumbs-up" aria-hidden="true"></i></td>
+           <td>3600/-</td>
+           <td>
+              <a class="btn btn-danger edit" href="path/to/settings" aria-label="Settings">
+                <i class="fa fa-trash" aria-hidden="true"></i>
+              </a>
+              &nbsp 
+              <a class="btn btn-info edit" href="path/to/settings" aria-label="Settings">
+                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+              </a> 
+           </td>
+        </tr>
+        <tr class="row-content">
+           <td class="check" "> <label><input type="checkbox" value=""></label></td>
+           <td> <span class="label label-info"> Old </span></td>
+           <td>FA102</td>
+           <td>Yusuf</td>
+           <td> Carbon Paper</td>
+           <td>Wow wonderful</td>
+           <td>1000/-</td>
+           <td>
+              <a class="btn btn-danger edit" href="path/to/settings" aria-label="Settings">
+                <i class="fa fa-trash" aria-hidden="true"></i>
+              </a>
+              &nbsp 
+              <a class="btn btn-info edit" href="path/to/settings" aria-label="Settings">
+                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+              </a> 
+           </td>
+        </tr>
+        <tr class="row-content">
+           <td class="check" "> <label><input type="checkbox" value=""></label></td>
+           <td> <span class="label label-info"> Old </span></td>
+           <td>FA103</td>
+           <td>Ajay</td>
+           <td>Rubber</td>
+           <td>I like It</td>
+           <td>5000/-</td>
+           <td>
+              <a class="btn btn-danger edit" href="path/to/settings" aria-label="Settings">
+                <i class="fa fa-trash" aria-hidden="true"></i>
+              </a>
+              &nbsp 
+              <a class="btn btn-info edit" href="path/to/settings" aria-label="Settings">
+                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+              </a> 
+           </td>
+        </tr>
+        <tr class="row-content">
+           <td class="check" "> <label><input type="checkbox" value=""></label></td>
+           <td> <span class="label label-default"> New </span></td>
+           <td>FA104</td>
+           <td>Kajol</td>
+           <td>Pencil</td>
+           <td>I love this...<i class="fa fa-heart" aria-hidden="true"></i></td>
+           <td>600/-</td>
+           <td>
+              <a class="btn btn-danger edit" href="path/to/settings" aria-label="Settings">
+                <i class="fa fa-trash" aria-hidden="true"></i>
+              </a>
+              &nbsp 
+              <a class="btn btn-info edit" href="path/to/settings" aria-label="Settings">
+                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+              </a> 
+           </td>
+        </tr>
+        <tr class="row-content">
+           <td class="check" "> <label><input type="checkbox" value=""></label></td>
+           <td> <span class="label label-info"> Old </span></td>
+           <td>FA105</td>
+           <td>Amitabh</td>
+           <td> Scale</td>
+           <td>Wonderful Idea</td>
+           <td>10,000/-</td>
+           <td>
+              <a class="btn btn-danger edit" href="path/to/settings" aria-label="Settings">
+                <i class="fa fa-trash" aria-hidden="true"></i>
+              </a>
+              &nbsp 
+              <a class="btn btn-info edit" href="path/to/settings" aria-label="Settings">
+                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+              </a> 
+           </td>
+        </tr>
+        <tr class="row-content">
+           <td class="check" "> <label><input type="checkbox" value=""></label></td>
+           <td> <span class="label label-default"> New </span></td>
+           <td>FA106</td>
+           <td>Twinkle</td>
+           <td>Pen</td>
+           <td>Very Happy.. <i class="fa fa-smile-o" aria-hidden="true"></i></td>
+           <td>780/-</td>
+           <td>
+              <a class="btn btn-danger edit" href="path/to/settings" aria-label="Settings">
+                <i class="fa fa-trash" aria-hidden="true"></i>
+              </a>
+              &nbsp 
+              <a class="btn btn-info edit" href="path/to/settings" aria-label="Settings">
+                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+              </a> 
+           </td>
+        </tr>
+     </tbody>
+  </table>
+
 
 </div></div></div>

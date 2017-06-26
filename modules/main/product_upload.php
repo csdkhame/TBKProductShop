@@ -1,18 +1,9 @@
-<!--<script>
-$(document).ready(function(){
-    $("#b1").click(function(){
-       swal("Here's a message!");
-    });
-});
-	
-</script>-->
-<button id="b1">123</button>
 <div class="jumbotron jumbotron-sm">
     <div class="container">
         <div class="row">
             <div class="col-sm-12 col-lg-12">
-                <h1 class="h1">
-                    Contact us <small>Feel free to contact us</small></h1>
+                <h2 class="h2">
+                    T-Booking<small> Increase Product Shop</small></h2>
             </div>
         </div>
     </div>
@@ -88,9 +79,9 @@ $(document).ready(function(){
                 </div> 
 
                 </div>
-                
-				<button type="submit" class="btn" id="submits">SUBMIT</button>
-                <button type="reset" class="btn" id="reset">RESET</button>
+                <table  align="center"><tr><td><button type="submit" class="btn btn-success" id="submits">SUBMIT</button> <button type="reset" class="btn btn-info" id="reset">RESET</button></td></tr></table>
+				
+               
                 </form>
                 <div align="center">
                 
