@@ -1,4 +1,3 @@
-  <?php header('Content-type: text/html; charset=utf-8'); ?>
 <?php 
 
 require_once("../../includes/class.mysql.php");
@@ -11,7 +10,7 @@ while(list($key, $value) = each($array)){
 }*/
 
 
-	if(isset($_POST)){
+	if($_GET[action]=='product'){
 	$db = New DB();
 	$db->connectdb(DB_NAME,DB_USERNAME,DB_PASSWORD);
 	$current_date = $current = date('Y-m-d h:i:s');
@@ -64,27 +63,58 @@ while(list($key, $value) = each($array)){
 		
 		if($save_product==1 and $save_img_corver==1 and $save_img_array==1){
 			echo '<script type="text/javascript">';
-			echo 'window.location.href = "index.php?name=main&file=product_upload";'; 
+			echo 'window.history.back();'; 
 			echo 'alert("Insert successful");'; 
 			echo '</script>';
+			//echo "Success";
 		}
 	//$save_product = $db->add_db(TB_Imag,$item_list); 
-
+	}
 
 	}
 	
 	
-	
-	
-	
-	
-	
+	if($_GET[action]=='type'){
+		if($_POST[name_type]!=""){
+			$db = New DB();
+			$db->connectdb(DB_NAME,DB_USERNAME,DB_PASSWORD);
+			$current_date = $current = date('Y-m-d h:i:s');
+			$type[s_name] = $_POST[name_type];
+			$type[d_last_update] = $current_date;
+			$type[s_detail] = $_POST[detail];
+			
+			mysql_query("SET NAMES utf8"); 
+			mysql_query("SET character_set_results=utf-8"); 
+			$save_type = $db->add_db(TB_Type,$type); 
+			echo $save_type;
+		}else{
+			echo 0;
+		}
+		
+
 	}
 	
+	if($_GET[action]=='query_type'){
+		$db = New DB();
+		$db->connectdb(DB_NAME,DB_USERNAME,DB_PASSWORD);
+		mysql_query("SET NAMES utf8"); 
+		mysql_query("SET character_set_results=utf-8"); 
+		$res[other] = $db->select_query("select * from  ".TB_Type." ORDER BY i_id DESC LIMIT 1  ");
+		  while($arr[other] = $db->fetch($res[other])) {
+		  	 $lab_meet1[] = $arr[other];
+		  }
+		  echo json_encode($lab_meet1);
+	}
+
+	if($_GET[action]=='deleted_type'){
+		
+		$db = New DB();
+		$db->connectdb(DB_NAME,DB_USERNAME,DB_PASSWORD);
+		$current_date = $current = date('Y-m-d h:i:s');
+		mysql_query("SET NAMES utf8"); 
+		mysql_query("SET character_set_results=utf-8"); 
+		$result = $db->update_db(TB_Type,array("i_deleted"=>"1","d_last_update"=>$current_date),"i_id='".$_POST[id]."' "); 
+		echo $result;
+	}
 	
-	//echo print_r($item_list);
-	
-
-
-
 ?>

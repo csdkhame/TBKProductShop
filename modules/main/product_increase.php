@@ -1,18 +1,7 @@
-<div class="jumbotron jumbotron-sm">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12 col-lg-12">
-                <h2 class="h2">
-                    T-Booking<small> Increase Product Shop</small></h2>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
+
+
             <div class="well well-sm">
-                							<form  method="post" name="insert_item" id="insert_item" action="modules/main/test.php" enctype="multipart/form-data" >
+                <form  method="post" name="insert_item" id="insert_item" action="modules/main/test.php?action=product" enctype="multipart/form-data" >
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
@@ -33,10 +22,16 @@
                             <label for="subject">
                                 Types Product</label>
                             <select id="type" name="typeitem" class="form-control" required="required">
-                                <option value="0" selected="">Choose One:</option>
-                                <option value="1">General Customer Service</option>
-                                <option value="2">Suggestions</option>
-                                <option value="3">Product Support</option>
+                            		<option value="0" selected="selected"></option>
+                            <?php 
+                            
+                            $db->connectdb(DB_NAME,DB_USERNAME,DB_PASSWORD); 
+                            mysql_query("SET NAMES utf8"); 
+							mysql_query("SET character_set_results=utf-8");
+							$res[other] = $db->select_query("select i_id,s_name from ".TB_Type." where i_deleted = 0  ");
+							 while($arr[other] = $db->fetch($res[other])) { ?>
+                                <option value="<?=$arr[other][i_id];?>"><?=$arr[other][s_name];?></option>
+                             <? }  ?>   
                             </select>
                         </div>
                        
@@ -50,10 +45,7 @@
                                 placeholder=""></textarea>
                         </div>
                     </div>
-                    <!--<div class="col-md-12" style="display: none;">
-                        <button type="submit" class="btn btn-primary pull-right" id="btnContactUs">
-                            Send Message</button>
-                    </div>-->
+             
   				<div class="col-md-12">   
 					 <div class="form-group">
                             <label for="subject">
@@ -68,76 +60,47 @@
 					 <div class="form-group">
                             <label for="subject">
                                 Images Product</label>
-                                
-                            <!-- <input type="file" class="form-control" id="images" name="images[]" onchange="preview_images();" multiple />
-							 <div class="row" id="image_preview"></div>-->
-		
+                       
            <input id="file-1" type="file" multiple class="file" data-overwrite-initial="false" data-min-file-count="2" name="files[]">
      
                         </div>
                 </div> 
 
                 </div>
-                <table  align="center"><tr><td><button type="submit" class="btn btn-success" id="submits">SUBMIT</button> <button type="reset" class="btn btn-info" id="reset">RESET</button></td></tr></table>
-				
-               
+                <table  align="center" style="border-bottom: 0px;"><tr><td><button type="submit" class="btn btn-success" id="submit">SUBMIT</button> <button type="reset" class="btn btn-info" id="reset">RESET</button></td></tr></table>
                 </form>
                 <div align="center">
-                
                 </div>
             </div>
-        </div>
-   
-    </div>
-</div>
 <script>
-	$('#submit').click(function(){
-	var url = 'modules/main/test.php';
-	
-	/*var file_data = $('#file-0').prop('files')[0];   
-	
-    var form_data = new FormData();                  
-    form_data.append('file', file_data);*/
-    
+/*	$( "#insert_item" ).submit(function( event ) {
+	var url = 'modules/main/test.php?action=product';
+
     data_form = $('#insert_item').serialize();    
 	data = new FormData($('#insert_item')[0]);
-	data.append('file', $('#file-1')[0].files[0]);
-    
-                   
-    $.ajax({
-                url: 'modules/main/test.php', // point to server-side PHP script 
-                dataType: 'text',  // what to expect back from the PHP script, if anything
-                cache: false,
-                contentType: false,
-                processData: false,
-                data: data,                         
-                type: 'post',
-                success: function(php_script_response){
-                    console.log(php_script_response);
-                }
-     });
-
-    
-
-    
-		
-	});
+	data.append('file', $('#file-1')[0].files[0]);          
+	    $.ajax({
+	                url: 'modules/main/test.php', // point to server-side PHP script 
+	                dataType: 'text',  // what to expect back from the PHP script, if anything
+	                cache: false,
+	                contentType: false,
+	                processData: false,
+	                data: data,                         
+	                type: 'post',
+	                success: function(php_script_response){
+	                    console.log(php_script_response);
+	                }
+	     });
+	     event.preventDefault();
+	});*/
 </script>
 
+<!--$( "#target" ).submit(function( event ) {
+  alert( "Handler for .submit() called." );
+  event.preventDefault();
+});-->
 
-<script>
- $(document).on('click', 'button[name="remove_img"]', function(e) {
 
-//	$('#preview-'+this.id+'').remove();
-//$('#preview-'+this.id+'').remove();
-var aaaa = $('#images').get(0).files[this.id].name;
-//$("#idofinput")[0].files;
-//ArrayName.splice(indexValueOfArray,aaaa);
-//$('#preview-1').parent().remove();
-});
-
- </script>
- 
 <script>
     $('#file-fr').fileinput({
         language: 'fr',
@@ -239,5 +202,3 @@ var aaaa = $('#images').get(0).files[this.id].name;
          */
     });
 </script>
-
-

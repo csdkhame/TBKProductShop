@@ -1,0 +1,163 @@
+<style>
+	.panel-table .panel-body{
+  padding:0;
+}
+
+.panel-table .panel-body .table-bordered{
+  border-style: none;
+  margin:0;
+}
+
+.panel-table .panel-body .table-bordered > thead > tr > th:first-of-type {
+    text-align:center;
+    width: 100px;
+}
+
+.panel-table .panel-body .table-bordered > thead > tr > th:last-of-type,
+.panel-table .panel-body .table-bordered > tbody > tr > td:last-of-type {
+  border-right: 0px;
+}
+
+.panel-table .panel-body .table-bordered > thead > tr > th:first-of-type,
+.panel-table .panel-body .table-bordered > tbody > tr > td:first-of-type {
+  border-left: 0px;
+}
+
+.panel-table .panel-body .table-bordered > tbody > tr:first-of-type > td{
+  border-bottom: 0px;
+}
+
+.panel-table .panel-body .table-bordered > thead > tr:first-of-type > th{
+  border-top: 0px;
+}
+
+.panel-table .panel-footer .pagination{
+  margin:0; 
+}
+
+/*
+used to vertically center elements, may need modification if you're not using default sizes.
+*/
+.panel-table .panel-footer .col{
+ line-height: 34px;
+ height: 34px;
+}
+
+.panel-table .panel-heading .col h3{
+ line-height: 30px;
+ height: 30px;
+}
+
+.panel-table .panel-body .table-bordered > tbody > tr > td{
+  line-height: 34px;
+}
+
+
+</style>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css' />
+
+<style>
+	.gallery
+{
+    display: inline-block;
+    margin-top: 20px;
+}
+
+</style>
+
+<div class="container">
+    <div class="row">
+        
+        <div class="col-md-10 col-md-offset-1">
+
+		    <div class="panel panel-info">
+		    
+		      <div class="panel-heading"><table width="100%"><tr><td>Image file</td><td align="right"><button class="btn btn-danger"><strong>Remove All</strong></button></td></tr></table></div>
+		      <div class="panel-body">
+		      	
+		      	<?php $id = $_GET[id]; 
+		      	
+		      	$db->connectdb(DB_NAME,DB_USERNAME,DB_PASSWORD);
+                  mysql_query("SET NAMES utf8"); 
+				  mysql_query("SET character_set_results=utf-8"); 
+		      	  $res[img] = $db->select_query("SELECT s_name,i_id_item,i_id,i_img_cover FROM ".TB_Imag." where i_id_item = '".$id."' and i_deleted = 0 ");
+                  while($arr[img] = $db->fetch($res[img])){ 
+                  if($arr[img][i_img_cover]==1){
+				  	$checked = "checked";
+				  }else{
+				  	$checked = "";
+				  }
+				  
+                  ?>
+			
+			<div class='col-sm-4 col-xs-6 col-md-3 col-lg-3' id="<?=$arr[img][i_id];?>">
+				<div class="thumbnail">
+                	 <img class="fixsize" alt="" src="images_upload/<?=$arr[img][s_name];?>"  style="max-width:100px; height: 100px;" />
+                    <div class='text-center'>
+                        <small ><?=$arr[img][s_name];?></small>
+      <div style="    margin-top: 5px;" >                  
+      <a class="fancybox" rel="ligthbox" href="images_upload/<?=$arr[img][s_name];?>"><button type="button" class="kv-file-remove btn btn-xs btn-default"><i class="glyphicon glyphicon-eye-open"></i></button></a>
+      <button type="button" class="kv-file-remove btn btn-xs btn-default" title="Remove file"  onclick="remove_img('<?=$arr[img][i_id];?>');" ><i class="glyphicon glyphicon-trash text-danger"></i></button>
+      </div>     	 
+                    </div> <!-- text-right / end -->
+    		</div>
+                  <div class="checkbox checkbox-primary" style="display: none;">
+                        <input id="checkbox<?=$arr[img][i_id];?>" type="checkbox" <?=$checked?>  />
+                        <label for="checkbox<?=$arr[img][i_id];?>">
+                        <small>Cover picture</small>   
+                        </label>
+         		</div>
+			<style></style>
+			<button type="button" class="btn btn-primary btn-radio">Left</button>
+            </div> <!-- col-6 / end -->		
+            	
+                <?  } 	?>
+		      </div>
+		    </div>
+
+	</div>
+
+	</div>
+
+</div>
+
+<script>
+	$(document).ready(function(){
+    //FANCYBOX
+    //https://github.com/fancyapps/fancyBox
+    $(".fancybox").fancybox({
+        openEffect: "none",
+        closeEffect: "none"
+    });
+});
+</script>
+
+<script>
+
+
+</script>
+
+
+<script>
+	function remove_img(id_img){
+		url = "modules/main/edit_img_php.php?action=remove_each";
+		swal({
+			  title: "Are you sure?",
+			  text: "Your will not be able to recover this imaginary file!",
+			  type: "warning",
+			  showCancelButton: true,
+			  confirmButtonClass: "btn-danger",
+			  confirmButtonText: "Yes, delete it!",
+			  closeOnConfirm: false
+			},
+			function(){
+//			  swal("Deleted!", "Your imaginary file has been deleted.", "success");	
+				$.post(url,{ id_img:id_img }, function(data) {
+//		           $('#'+id_img).remove();
+		           
+		        });
+
+			});
+	}
+</script>

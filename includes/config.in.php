@@ -53,10 +53,10 @@ define("TB_Detail","web_detail");
 
 define("TB_Imag","web_imagine"); 
 
+define("TB_Type","web_item_type"); 
+
 define("TB_Item","web_item_list"); 
 
-define("TB_lang","web_language2"); 
+define("TB_Item_Log","web_item_list_log"); 
 
-
-
-?>
+define("TB_lang","web_language2"); ?>
