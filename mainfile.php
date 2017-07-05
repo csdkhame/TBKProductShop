@@ -10,7 +10,9 @@ if (file_exists($modpathfile)) {
 	$MODPATHFILE = $modpathfile;
 	$MODPATH = "/modules/".$name."/";
 	}else{
-	die ("Not found");
+	//die ("Not found");
+	$MODPATHFILE = "/modules/main/product_list.php";
+	$MODPATH = "/modules/main/";
 	}
 }
 

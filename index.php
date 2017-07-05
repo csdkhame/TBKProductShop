@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
-
+@session_start();
 //error_reporting(0);
 require_once("mainfile.php");
 $PHP_SELF = "index.php";
@@ -319,7 +319,16 @@ font-size: 24px;
   background-color: #5cb85c; }
 </style>-->
 
-<body> 
+<body>
+<?php
+if($_SESSION[admin_user] == ''){
+?>
+<script>
+  window.location.replace("http://t-booking.com/login.php");
+</script>
+<?php  
+}
+?>
  <?php include ("".$MODPATHFILE."");?>
 
 </body>
